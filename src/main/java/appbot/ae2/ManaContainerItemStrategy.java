@@ -24,7 +24,7 @@ public class ManaContainerItemStrategy implements ContainerItemStrategy<ManaKey,
             return null;
         }
 
-        var item = XplatAbstractions.INSTANCE.findManaItem(stack);
+        var item = XplatAbstractions.instance().findItemApi(ManaItem.LOOKUP, stack);
 
         if (item != null) {
             return new GenericStack(ManaKey.KEY, item.getMana());
@@ -35,12 +35,12 @@ public class ManaContainerItemStrategy implements ContainerItemStrategy<ManaKey,
 
     @Override
     public @Nullable ManaItem findCarriedContext(Player player, AbstractContainerMenu menu) {
-        return XplatAbstractions.INSTANCE.findManaItem(menu.getCarried());
+        return XplatAbstractions.instance().findItemApi(ManaItem.LOOKUP, menu.getCarried());
     }
 
     @Override
     public @Nullable ManaItem findPlayerSlotContext(Player player, int slot) {
-        return XplatAbstractions.INSTANCE.findManaItem(player.getInventory().getItem(slot));
+        return XplatAbstractions.instance().findItemApi(ManaItem.LOOKUP, player.getInventory().getItem(slot));
     }
 
     @Override
